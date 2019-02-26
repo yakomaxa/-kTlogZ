@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+               
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-135009439-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+ 
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+		<title>
+				分子受肉の続き(Oculus版) &middot; Sakuma -kTlogP
+		</title>
+	
+		
+  		<link rel="stylesheet" href="/minus_kTlogP/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+	
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/minus_kTlogP/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/minus_kTlogP/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/minus_kTlogP/images/apple-touch-icon.png">
+	
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Sakuma -kTlogP" />
+	</head>
+	
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/minus_kTlogP/">
+					<h2 class="nav-title">Sakuma -kTlogP</h2>
+				</a>
+				<ul>
+    <li><a href="/minus_kTlogP/about">About</a></li>
+    <li><a href="/minus_kTlogP/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        Koya.S
+        <br>
+        <span>on&nbsp;</span><time datetime="2019-02-26 22:18:15 &#43;0900 JST">February 26, 2019</time>
+</div>
+		<h1 class="post-title">分子受肉の続き(Oculus版)</h1>
+<div class="post-line"></div>
+
+		
+
+		<p>VRビューアの仕様で一部のモデルが画像合成できない問題、Oculusの方だとうまくいくことがわかった。</p>
+
+<p><a href="https://yakomaxa.github.io/minus_kTlogP/post/nanomevmcliv_ja/">分子に会うため受肉した話</a>の続きです。</p>
+
+<h1 id="一部の分子モデルが正しく画像合成されない問題">一部の分子モデルが正しく画像合成されない問題</h1>
+
+<p>前回、Nanome + VMC + LIVの組み合わせでかなりやれることがわかった。しかし、クロマキー合成すると、特定のモデルが常にアバターの裏側に行ってしまう問題が残っていた。前回はその辺をごまかすために、surface表示にしてから体の前に持ってくることでごまかしていたのだけど、これだと実用上問題があるので直したい。</p>
+
+<h1 id="ビューアの仕様">ビューアの仕様</h1>
+
+<p>SteamVRもVMCもクロマキーも全くの初心者なので、これはなんか私の設定ミスだろ、と考え、１週間ぐらい（たぶん）試行錯誤した。いろいろ試した結果、ビューアソフトの問題だと確信し、開発者に確認させていただいた。結果、やはりそういう仕様らしい。残念。かなり落ち込んだ、というのが前回までの話（書いてないけど）。</p>
+
+<h1 id="oculus版の存在を思い出す">Oculus版の存在を思い出す</h1>
+
+<p>開発者側に「むりです」って言われてしまってたので諦めかけていたのだが、偶然、このまとめを目にした。とても参考になった。</p>
+
+<p><a href="https://twitter.com/i/moments/1098106642812395520?ref_src=twsrc%5Etfw">Oculus Rift+バーチャルモーションキャプチャー+LIVでMR合成する方法</a></p>
+
+<p>「Oculus APIの方だとMRSはできない」というところを読んだ時、そういえば、この分子ビューアってOculus版もあったなー、と思い至った。上のリンクで指摘されている通り、LIVでの合成に使えるわけではないので放置していた。</p>
+
+<p>しかし、そういえばOculus版の方にはMixed Reality Captureという機能があったのを思い出して、その動かし方を調べたら公式で説明されていた。<a href="https://developer.oculus.com/documentation/unity/latest/concepts/unity-mrc/">ここのサイト</a>。</p>
+
+<p>関係ないが、このOculusのサイト、リンクが切れていがちで精神的に翻弄されやすい。たぶん日本語版のページがないのだろう。記事の中のリンクではなく、左のタブにあるリンクを選ぶと大丈夫。</p>
+
+<h1 id="oculus版だとなぜか行ける">Oculus版だとなぜか行ける</h1>
+
+<p>Unreal EngineをつかったOculus版だと「裏側に行ってしまう問題」がおきない。</p>
+
+<p>できた！・・・のだけど、まだまだ問題があるので動画無し。</p>
+
+<h1 id="やったこと">やったこと</h1>
+
+<ul>
+<li>VMCを起動しVRMを読み込み、仮想カメラをONにする。</li>
+<li>Nanomeを以下のオプション付きでコマンドラインから起動
+** -mixedreality -directcomposition
+** ここを参考にした。公式（再掲）[<a href="https://developer.oculus.com/documentation/unity/latest/concepts/unity-mrc">https://developer.oculus.com/documentation/unity/latest/concepts/unity-mrc</a>]
+** -mixedreality -externalcomposition だと２分割画面が出たのでOBSで合成できることを確認。こちらの方が便利な場合もあるかもしれない。</li>
+<li>Nanomeが起動し、そのウインドウに、ガビガビの文字で「Unityがシグナルを受け取ってないぞ」みたいなメッセージがでる
+** ここで、あ、これLIVのcompositorと同じじゃん、と気づく。</li>
+<li>VMCの画面サイズを正しく調整すると、NanomeのウインドウにVMCの画面が合成される。
+** 背景色を調整すればクロマキー合成も正しくうごき、「常に裏側」問題も解決される。</li>
+</ul>
+
+<h1 id="できてないこと">できてないこと</h1>
+
+<ul>
+<li>あとは、カメラのキャリブレーションをするのみ！・・・なのだが、OculusのMixed Reality Captureにおけるカメラキャリブレーションが謎で止まっている。</li>
+<li>カメラの位置合わせは（最悪）無理やり手で合わすのも可能だが、そもそもカメラ位置を移動させたい（遠すぎ）。
+** Steam版のようにexternalcamera.config みたいなものがあるなら、それを手で書けば良いのだが、そういうのがみつからない。
+** mrc.config というものはある。
+*** -create_mrc_config のオプション付きで起動すると、実行ファイルと同階層にあるDataフォルダの中に置かれる。
+*** -load_mrc_config で、編集したファイルを読める。
+*** 一度起動して出力されたファイルを編集し、-load_mrc_config付きで再び起動すると反映される。
+*** しかし、このファイルにはカメラ位置を指定する変数がないような気がしている。
+*** mrc.configの実例については、さっきのOculusのリンクの下の方に書いてある。</li>
+<li>カメラ位置ぎめ
+*** Unreal Engineのこの辺のを読んで、MRCalibration.exeを実行した。
+*** しかし、仮想カメラは認識させる方法がわからない。違うマシンだが、リアルのカメラが入っていると動くことも確認。
+** Oculusの公式で書いてあるCameraTool.exeの方は、以下のdllがないので動かないと言われる。
+*** sl_zed64
+*** sl_core64
+**** これもおそらくカメラがない関係だろう。</li>
+</ul>
+
+<h1 id="次めざすこと">次めざすこと</h1>
+
+<ul>
+<li>どうにかしてカメラキャリブレーションする。</li>
+</ul>
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/minus_kTlogP/post/nanomevmcliv_en/" class="left arrow">&#8592;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-02-27 01:12:55.98897 &#43;0900 JST m=&#43;0.114344655">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>
