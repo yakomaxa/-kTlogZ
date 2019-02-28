@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vr on Sakuma -kTlogP</title>
+    <link>http://yakomaxa.github.io/minus_kTlogP/tags/vr/</link>
+    <description>Recent content in Vr on Sakuma -kTlogP</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Feb 2019 22:18:15 +0900</lastBuildDate>
+    
+	<atom:link href="http://yakomaxa.github.io/minus_kTlogP/tags/vr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>分子受肉の続き(Oculus版)</title>
+      <link>http://yakomaxa.github.io/minus_kTlogP/post/nanomevmcunreal_ja/</link>
+      <pubDate>Tue, 26 Feb 2019 22:18:15 +0900</pubDate>
+      
+      <guid>http://yakomaxa.github.io/minus_kTlogP/post/nanomevmcunreal_ja/</guid>
+      <description>&lt;p&gt;要約&lt;/p&gt;
+
+&lt;p&gt;やりたいことがOculus版のソフトだとうまくいく。なので「Oculus版のMR機能+バーチャルモーションキャプチャー」の方法を模索する。結果的に、だいたい動いた。まだカメラのキャリブレーションが難しいのでどうにかしたい。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
