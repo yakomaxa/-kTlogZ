@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+               
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-135009439-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+ 
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="description" content="Oculus版のソフトでVMCを使う試み">
+
+
+		<meta property="og:title" content="分子受肉の話の続き" />
+		<meta property="og:type" content="article">
+		<meta property="og:description" content="Oculus版のソフトでVMCを使う試み" />
+		<meta property="og:url" content="http://yakomaxa.github.io/minus_kTlogP/post/nanomevmcunreal_ja/" />
+		<meta property="og:image" content="http://yakomaxa.github.io/minus_kTlogP/./img/VMCOculusNanome.png" />
+		<meta property="og:site_name" content="Sakuma -kTlogP">
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:url" content="http://yakomaxa.github.io/minus_kTlogP/post/nanomevmcunreal_ja/" />
+		<meta name="twitter:image" content="http://yakomaxa.github.io/minus_kTlogP/./img/VMCOculusNanome.png" />
+		<meta name="twitter:site" content="@skm58" />
+		<meta name="twitter:creator" content="@skm58" /> 
+
+		<title>
+				分子受肉の話の続き &middot; Sakuma -kTlogP
+		</title>
+	
+		
+  		<link rel="stylesheet" href="/minus_kTlogP/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+	
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/minus_kTlogP/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/minus_kTlogP/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/minus_kTlogP/images/apple-touch-icon.png">
+	
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Sakuma -kTlogP" />
+
+</head>
+
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/minus_kTlogP/">
+					<h2 class="nav-title">Sakuma -kTlogP</h2>
+				</a>
+				<ul>
+    <li><a href="/minus_kTlogP/about">About</a></li>
+    <li><a href="/minus_kTlogP/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        Koya.S
+        <br>
+        <span>on&nbsp;</span><time datetime="2019-03-01 02:10:28 &#43;0900 JST">March 1, 2019</time>
+</div>
+		<h1 class="post-title">分子受肉の話の続き</h1>
+<div class="post-line"></div>
+
+		
+
+		<p>要約</p>
+
+<p>やりたいことがOculus版のソフトだとうまくいく。なので「Oculus版のMR機能+バーチャルモーションキャプチャー」の方法を模索する。結果的に、だいたい動いた。ただ、カメラのキャリブレーションが難しいのでどうにかしたい。</p>
+
+<h1 id="結果">結果</h1>
+
+<iframe width="1022" height="575" src="https://www.youtube.com/embed/aYgq2dcrl1M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>まえは、自分の体の前に出せない(alpha maskがつくられない)ものがあったが、大丈夫そう。これで技術的な問題は解決、実戦投入できそう。ただ、後述するようにカメラ位置合わせが難しく、今回の動画もずれてる。</p>
+
+<h1 id="ながれ">ながれ</h1>
+
+<p>私はゲームでは試してないのだが、しらべたところ<a href="https://github.com/zipleen/BSOculusMREnabler/blob/master/README.md">OculusのBeatSabarでMR合成しようとした人がいた</a> ので、他のゲームでも運が良ければ使えるかもしれない。このあたり、日本語の文章がほぼ存在しない（英語も超少ないけど・・・）ので、もしこのメモがだれかの参考になれば嬉しい。</p>
+
+<ul>
+<li>確認
+
+<ul>
+<li>Oculus版のゲームをコマンドラインから-mixedreality -externalcompositionのオプションで起動して、２分割画面が出ることを確認</li>
+<li>Oculus版のゲームをコマンドラインから-mixedreality -directcompositionのオプションで起動して、「Unity has not started sending image data」が出ることを確認（LivのCompositorと同じ画面）。</li>
+<li>VMCを起動し、仮想カメラを起動。Oculus版のゲームに表示されている画面サイズにあわせたとき、正しく合成されることを確認。</li>
+</ul></li>
+<li>カメラキャリブレーション
+
+<ul>
+<li>本物のカメラを接続</li>
+<li>CameraTool.exeを使ってカメラキャリブレーションし、cameracalibration.xmlを出力</li>
+<li>CameraToolが起動しないのでZEDSDKを入れた（これが効いたかはわからない）</li>
+<li>CameraToolを終了</li>
+</ul></li>
+<li>cameracalibration.xmlの書き換え
+
+<ul>
+<li>VMCを起動し、VRMの読み込み・キャリブレーションなど設定の後、externalcamera.cfgを出力</li>
+<li>externalcamera.cfgをcameracalibration.xmlに翻訳（頑張る）</li>
+</ul></li>
+<li>本番
+
+<ul>
+<li>CameraToolを起動し、cameracalibration.xmlを読み込み</li>
+<li>Send to oculus serverする</li>
+<li>CameraToolを終了</li>
+<li>ゲームを-mixedreality -directcompositiondで起動する</li>
+<li>もしキャプチャ元を選ぶように言われたら、VMC仮想カメラを選択</li>
+<li>ゲームが第三者視点で起動し、VMCの画面が合成される</li>
+<li>楽しむ</li>
+</ul></li>
+</ul>
+
+<h1 id="作業メモ">作業メモ</h1>
+
+<h2 id="一部の分子モデルが正しく画像合成されない問題">一部の分子モデルが正しく画像合成されない問題</h2>
+
+<p><a href="https://yakomaxa.github.io/minus_kTlogP/post/nanomevmcliv_ja/">前回</a>、Steam版Nanome + VMC + LIVの組み合わせでかなりやれることがわかった。しかし、クロマキー合成すると、特定のモデルが常にアバターの裏側に行ってしまう問題が残っていた。テスト動画では、surface表示にしてから体の前に持ってくることでごまかしたが、これだと実用上問題がある。直したい。</p>
+
+<h2 id="仕様らしい">仕様らしい</h2>
+
+<p>色々試してみて、これはビューアソフトの問題だとわかった。４分割画面の時点でalpha maskが正常に表示されないことを確認したので、ビューアソフト内部の問題だと判断し、開発企業に問い合わせた。結果、そういう挙動になることは既知、との答えをいただいだ。とても詳しく回答をいただいて、非常にありがたかった。もはや打つ手がない感じで、ちょっと残念だ、というのが前回までの話（書いてないけれど）。</p>
+
+<h2 id="oculus版の存在を思い出す">Oculus版の存在を思い出す</h2>
+
+<p>ほぼ諦めかけていたのだが、偶然、このまとめを目にした。</p>
+
+<p><a href="https://twitter.com/i/moments/1098106642812395520?ref_src=twsrc%5Etfw">Oculus Rift+バーチャルモーションキャプチャー+LIVでMR合成する方法</a></p>
+
+<p>とても参考になった。</p>
+
+<p>「Oculus APIだとLIVをつかったMRSはできない」というところを読んだ時、そういえばOculus版もあっことを思い出した。たしかOculus版の方にはMixed Reality Captureという機能があった気がしたので、その動かし方を調べた。おおかた公式で説明されていた。<a href="https://developer.oculus.com/documentation/unity/latest/concepts/unity-mrc/">ここのサイト</a>。</p>
+
+<p>（関係ないが、このOculusのMRC周辺のドキュメントは、リンクが切れていがちで精神的に翻弄されやすい。たぶん日本語版のページがないのだろう。記事の中のリンクではなく、左の別枠にあるリンクでひらけば大丈夫）</p>
+
+<h2 id="なぜかoculus版だとうまくいく">なぜかOculus版だとうまくいく</h2>
+
+<p>まず、コマンドラインから目的のソフトを以下のオプション付きで起動して、二画面分割が出ることを確認。</p>
+
+<ul>
+<li>-mixedreality -externalcomposition</li>
+</ul>
+
+<p>この時点で、Steamでのクロマキーのfront/backの認識されない問題が回避できていることがわかった。</p>
+
+<p>次に、以下のオプション付きで起動して、LIVのcompositorと同じような画面が出ることを確認（Unityがまだシグナルを送ってません、的なガビガビの文字）。</p>
+
+<ul>
+<li>-mixedreality -directcomposition</li>
+</ul>
+
+<p>さらにVMCを起動し仮想カメラをONにした状態で、directcompositionで起動し、画面サイズと背景色を合わせるとクロマキー合成ができる。</p>
+
+<p>これで、システム的にはOculus版でもVMCを使ったクロマキーができるようになった。</p>
+
+<p>やっとできた！・・・のだけど、まだ問題が残っている。</p>
+
+<h2 id="カメラキャリブレーション">カメラキャリブレーション</h2>
+
+<p>カメラキャリブレーションが難所だった（いまだに完全には解決してない）</p>
+
+<ul>
+<li>Oculusの公式で書いてあるとおり、CameraTool.exeを動かす
+
+<ul>
+<li>sl_zed64.dllとsl_core64.dllがないと言われたので、ZED SDKを入れたら動くようになった。ただし、ZED SDKを入れる段階でCUDAの更新とか色々行われたので、何が効いたのかいまいちわからない。
+<strong>CUDAの更新って嫌な思い出がおおく、あまりやりたくないし、おすすめしたくない。今回は無事でしたが。</strong></li>
+</ul></li>
+<li>CameraToolを起動する
+
+<ul>
+<li>CameraToolでVMCの仮想カメラは認識されるが、選択しても使うことができない。pidが不明です、的なことを言われたと思う。</li>
+<li>なので、まずは本物のカメラを使って適当にキャリブレーションする。</li>
+<li>なんとか最後までやってファイルを保存すると、cameracalibration.xmlが保存される</li>
+</ul></li>
+<li>cameracalibration.xmlの中身を適当に改変する。
+
+<ul>
+<li>形式はxmlで可読だったので、手で書いてみることにした。</li>
+<li>CameraToolはOpenCVのカメラキャリブレーションを使っているらしく、そのあたりののドキュメントを読みながら適当に数値を入れ直す。</li>
+<li>translation rotation cameramatrix これらを書きかえる</li>
+<li>distorsion補正は0でいいと思う（わからない）</li>
+</ul></li>
+</ul>
+
+<h2 id="本番">本番</h2>
+
+<ul>
+<li>VMCを起動し、設定して、キャリブレーション。</li>
+<li>externalcamera.cfgを出力し、cameracalibration.xmlに変換。</li>
+<li>CameraToolを起動して、cameracalibration.xmlを読み込んでSend to Oculus Serverする。
+
+<ul>
+<li>もしVMC仮想カメラ以外にカメラを繋いでない場合は、CameraToolを終了する（こちらで仮想カメラを呼んでるとゲームから呼べないらしい）。</li>
+</ul></li>
+<li>目的のゲームを-mixedreality -directcompositionで起動する。</li>
+</ul>
+
+<h1 id="oculus版のmr機能についてわかったこと">Oculus版のMR機能についてわかったこと</h1>
+
+<p>Steam版のexternalcamera.cfgに相当する情報が、二つのファイルに分かれている。</p>
+
+<ul>
+<li>mrc.confg
+
+<ul>
+<li>-create_mrc_config のオプション付きで起動すると、実行ファイルと同階層にあるDataフォルダの中に置かれる。</li>
+<li>-load_mrc_config で、そのファイルを読める。</li>
+<li>一度起動して出力されたファイルを編集し、-load_mrc_config付きで再び起動すると反映される。</li>
+<li>このファイルにはカメラ位置や回転を指定する変数がない。</li>
+<li>ゲームのバイナリが読む。</li>
+</ul></li>
+</ul>
+
+<p>参考：OculusのBeatSabarでMR合成を頑張ろうとした先人のレポジトリ</p>
+
+<p><a href="https://github.com/zipleen/BSOculusMREnabler/blob/master/README.md">https://github.com/zipleen/BSOculusMREnabler/blob/master/README.md</a></p>
+
+<ul>
+<li>cameracalibration.xml
+
+<ul>
+<li>座標・回転・歪み補正・カメラ行列の情報などが書かれている。</li>
+<li>CameraToolで読んで、Oculus Sever経由でゲームに渡す。</li>
+</ul></li>
+</ul>
+
+<h1 id="次やりたいこと">次やりたいこと</h1>
+
+<ul>
+<li>externalcamera.cfgを読んでcameracalibration.xmlを出力するスクリプトを書く</li>
+<li>いまいち両者の数値の対応関係がよくわかってないので、しばらくかかりそう。</li>
+<li>メモ
+
+<ul>
+<li>FOVのあたり（たぶんCameraMatrixの値から出てくる）は三角形かいて計算しないといけないような気がしている。</li>
+<li>rotationがなぜ４変数なのか理解できてない。２軸の周りの回転行列（の一部の成分）で表現してる？だとしても、どれがどれだかわからん。</li>
+</ul></li>
+<li>LIVみたいに合成した映像をHMDへ返す方法はないだろうか・・・。</li>
+<li>この二点が解決できれば実戦投入可能（なんの実戦だ・・・）</li>
+</ul>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li>Oculus Rift+バーチャルモーションキャプチャー+LIVでMR合成する方法
+
+<ul>
+<li><a href="https://twitter.com/i/moments/1098106642812395520?ref_src=twsrc%5Etfw)">https://twitter.com/i/moments/1098106642812395520?ref_src=twsrc%5Etfw)</a></li>
+<li>今回は-OpenVRじゃない方のオプションを試してみたことがきっかけで光明を見出した。</li>
+</ul></li>
+<li>Oculusのmixed reality capture
+
+<ul>
+<li><a href="https://developer.oculus.com/documentation/unity/latest/concepts/unity-mrc/">https://developer.oculus.com/documentation/unity/latest/concepts/unity-mrc/</a></li>
+<li>一番重要。リンクが切れがちなので、左のフレームからページを開くべき。</li>
+</ul></li>
+<li>ZED SDK
+
+<ul>
+<li><a href="https://www.stereolabs.com/developers/release/2.5/">https://www.stereolabs.com/developers/release/2.5/</a></li>
+</ul></li>
+<li>OpenCVのカメラキャリブレーション
+
+<ul>
+<li><a href="http://labs.eecs.tottori-u.ac.jp/sd/Member/oyamada/OpenCV/html/py_tutorials/py_calib3d/py_calibration/py_calibration.html">http://labs.eecs.tottori-u.ac.jp/sd/Member/oyamada/OpenCV/html/py_tutorials/py_calib3d/py_calibration/py_calibration.html</a></li>
+</ul></li>
+<li>BSOculusMREnabler
+
+<ul>
+<li><a href="https://github.com/zipleen/BSOculusMREnabler/blob/master/README.md">https://github.com/zipleen/BSOculusMREnabler/blob/master/README.md</a></li>
+</ul></li>
+</ul>
+		
+
+	</div>
+
+	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="true">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+	<div class="pagination">
+		<a href="/minus_kTlogP/post/nanomevmcliv_en/" class="left arrow">&#8592;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+
+
+</main>
+
+
+        <footer>
+  
+			<span>
+			&copy; <time datetime="2019-03-01 02:17:50.111011 &#43;0900 JST m=&#43;0.069962616">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>
