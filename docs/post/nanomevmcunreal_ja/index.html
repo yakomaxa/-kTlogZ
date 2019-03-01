@@ -85,13 +85,13 @@ if (!doNotTrack) {
 
 <h1 id="注意-2019-03-01-22-00-added">注意（2019/03/01 22:00 added）</h1>
 
-<p>環境が壊れることがあるようなので、もしやる場合は気をつけて取り組んでください。</p>
+<p>以下の手順を試していて、どこかの段階で環境が壊れる例があったそうです(<a href="https://twitter.com/rennosuke/status/1101464830261616640">ツイートをリンクさせていただきます</a>)。もしやる場合は気をつけて取り組んでください。</p>
 
 <p>HMDに何も映らなくなり、NVIDIAドライバーの再インストールで復旧したとのことですが、原因不明で直る理由もわかりません。もしすでに他に不具合がでた方がいたら申し訳ありません。</p>
 
 <p><strong>BE CAREFUL.</strong> This procedure may cause some troubles in your PC environment, so please REALLY careful to do this. One reported that HMD went black in some point of following procedues and required reinstallation of NVIDIA driver. It&rsquo;s unclear what cuased this and why it&rsquo;s recovered by reinstallation.</p>
 
-<p>怖すぎる。。。</p>
+<p>自分の環境ならどうにでもなるのですが、ひとさまの環境を壊す可能性のあるものを書くのは怖すぎる。。。</p>
 
 <h1 id="結果">結果</h1>
 
@@ -173,10 +173,10 @@ if (!doNotTrack) {
 <p>次に、以下のオプション付きで起動して、LIVのcompositorと同じような画面が出ることを確認（Unityがまだシグナルを送ってません、的なガビガビの文字）。</p>
 
 <ul>
-<li>-mixedreality -directcomposition</li>
+<li>-mixedreality -directcomposition
+2
+さらにVMCを起動し仮想カメラをONにした状態で、directcompositionで起動し、画面サイズと背景色を合わせるとクロマキー合成ができる。</li>
 </ul>
-
-<p>さらにVMCを起動し仮想カメラをONにした状態で、directcompositionで起動し、画面サイズと背景色を合わせるとクロマキー合成ができる。</p>
 
 <p>これで、システム的にはOculus版でもVMCを使ったクロマキーができるようになった。</p>
 
@@ -307,6 +307,19 @@ if (!doNotTrack) {
 <li>x -OpenVR -&gt; o -vrmode openvr</li>
 </ul></li>
 </ul>
+
+<h1 id="使用ソフト">使用ソフト</h1>
+
+<ul>
+<li>Virtual Motion Capture
+
+<ul>
+<li>VMC の開発者は <a href="https://twitter.com/sh_akira"> @sh_akira </a>さんです</li>
+<li>ダウンロードサイト<a href="https://sh-akira.booth.pm/items/999760"> Booth</a></li>
+<li><a href="https://sh-akira.github.io/VirtualMotionCapture/about.html">https://sh-akira.github.io/VirtualMotionCapture/about.html</a></li>
+</ul></li>
+<li>Oculus版Nanome</li>
+</ul>
 		
 
 	</div>
@@ -327,7 +340,7 @@ if (!doNotTrack) {
         <footer>
   
 			<span>
-			&copy; <time datetime="2019-03-01 23:02:12.129374 &#43;0900 JST m=&#43;0.192091596">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			&copy; <time datetime="2019-03-02 06:48:57.042361 &#43;0900 JST m=&#43;0.069161858">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
 			</span>
 		</footer>
 
