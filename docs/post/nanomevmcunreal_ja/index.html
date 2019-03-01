@@ -83,6 +83,10 @@ if (!doNotTrack) {
 
 <p>やりたいことがOculus版のソフトだとうまくいく。なので「Oculus版のMR機能+バーチャルモーションキャプチャー」の方法を模索する。結果的に、だいたい動いた。ただ、カメラのキャリブレーションが難しいのでどうにかしたい。</p>
 
+<h1 id="注意-2019-03-01追記">注意（2019/03/01追記）</h1>
+
+<p>環境が壊れることがあるようなので、もしやる場合は気をつけて取り組んでください。こわすぎる。</p>
+
 <h1 id="結果">結果</h1>
 
 <iframe width="900" height="512" src="https://www.youtube.com/embed/aYgq2dcrl1M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -146,7 +150,7 @@ if (!doNotTrack) {
 
 <p>とても参考になった。</p>
 
-<p>「Oculus APIだとLIVをつかったMRSはできない」というところを読んだ時、そういえばOculus版もあっことを思い出した。たしかOculus版の方にはMixed Reality Captureという機能があった気がしたので、その動かし方を調べた。おおかた公式で説明されていた。<a href="https://developer.oculus.com/documentation/unity/latest/concepts/unity-mrc/">ここのサイト</a>。</p>
+<p>「Oculus APIだとLIVをつかったMRSはできない」というところを読んだ時、そういえばOculus版もあったことを思い出した。たしかOculus版の方にはMixed Reality Captureという機能があった気がしたので、その動かし方を調べた。おおかた公式で説明されていた。<a href="https://developer.oculus.com/documentation/unity/latest/concepts/unity-mrc/">ここのサイト</a>。</p>
 
 <p>（関係ないが、このOculusのMRC周辺のドキュメントは、リンクが切れていがちで精神的に翻弄されやすい。たぶん日本語版のページがないのだろう。記事の中のリンクではなく、左の別枠にあるリンクでひらけば大丈夫）</p>
 
@@ -158,7 +162,7 @@ if (!doNotTrack) {
 <li>-mixedreality -externalcomposition</li>
 </ul>
 
-<p>この時点で、Steamでのクロマキーのfront/backの認識されない問題が回避できていることがわかった。</p>
+<p>この時点で、Steam版でのクロマキーのfront/backの認識されない問題が回避できていることがわかった。</p>
 
 <p>次に、以下のオプション付きで起動して、LIVのcompositorと同じような画面が出ることを確認（Unityがまだシグナルを送ってません、的なガビガビの文字）。</p>
 
@@ -293,7 +297,7 @@ if (!doNotTrack) {
 <li>2019/03/01 誤表記修正
 
 <ul>
-<li>x Oculus Server -&gt; o -OVRServer</li>
+<li>x Send to Oculus Serverする -&gt; o Save Camera to OVRServerする</li>
 <li>x -OpenVR -&gt; o -vrmode openvr</li>
 </ul></li>
 </ul>
@@ -317,7 +321,7 @@ if (!doNotTrack) {
         <footer>
   
 			<span>
-			&copy; <time datetime="2019-03-01 21:44:12.282062 &#43;0900 JST m=&#43;0.124326389">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			&copy; <time datetime="2019-03-01 22:04:55.165301 &#43;0900 JST m=&#43;0.145164669">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
 			</span>
 		</footer>
 
