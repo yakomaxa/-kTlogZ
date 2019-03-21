@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+               
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-135009439-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+ 
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="description" content="externalcamera.cfg -&gt; cameracalibration.xml">
+
+
+		<meta property="og:title" content="Camera calibration for Oculus Mixed Reality Capture guided by externalcamera.cfg" />
+		<meta property="og:type" content="article">
+		<meta property="og:description" content="externalcamera.cfg -&gt; cameracalibration.xml" />
+		<meta property="og:url" content="http://yakomaxa.github.io/minus_kTlogP/post/vmcmrc_en/" />
+		<meta property="og:image" content="http://yakomaxa.github.io/minus_kTlogP/../../img/extcam2camcalib_table.png" />
+		<meta property="og:site_name" content="Sakuma -kTlogP">
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:url" content="http://yakomaxa.github.io/minus_kTlogP/post/vmcmrc_en/" />
+		<meta name="twitter:image" content="http://yakomaxa.github.io/minus_kTlogP/../../img/extcam2camcalib_table.png" />
+		<meta name="twitter:site" content="@skm58" />
+		<meta name="twitter:creator" content="@skm58" /> 
+
+		<title>
+				Camera calibration for Oculus Mixed Reality Capture guided by externalcamera.cfg &middot; Sakuma -kTlogP
+		</title>
+	
+		
+  		<link rel="stylesheet" href="/minus_kTlogP/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+	
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/minus_kTlogP/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/minus_kTlogP/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/minus_kTlogP/images/apple-touch-icon.png">
+	
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Sakuma -kTlogP" />
+		
+</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/minus_kTlogP/">
+					<h2 class="nav-title">Sakuma -kTlogP</h2>
+				</a>
+				<ul>
+    <li><a href="/minus_kTlogP/about">About</a></li>
+    <li><a href="/minus_kTlogP/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        Koya.S
+        <br>
+        <span>on&nbsp;</span><time datetime="2019-03-21 23:00:43 &#43;0900 JST">March 21, 2019</time>
+</div>
+		<h1 class="post-title">Camera calibration for Oculus Mixed Reality Capture guided by externalcamera.cfg</h1>
+<div class="post-line"></div>
+
+		
+
+		<p><strong>Summary</strong></p>
+
+<p>I tried to generate xml for Oculus Mixed Reality Capture from externalcamera.cfg.</p>
+
+<h1 id="summary-of-the-previous-article">Summary of the previous article</h1>
+
+<ul>
+<li>I found Oculus MRC + VMC worked, but camera calibration is painful.</li>
+</ul>
+
+<p>Again, be careful that this procedure may cause some trouble in your PC environments according to one previous report.</p>
+
+<h1 id="what-i-did">What I did</h1>
+
+<ul>
+<li>Using CameraTool, I calibrated a web-cam and exported cameracalibration.xml.</li>
+<li>I read the xml and found out what the values mean.</li>
+<li>I wrote a script to generate the xml according to pre-exported externalcamera.cfg file.</li>
+</ul>
+
+<h1 id="what-is-possible">What is possible.</h1>
+
+<p>You can set camera position, angle, and fov according to pre-exported externalcamera.cfg
+<div class="img">
+     <iframe width="512" height="512" src="https://www.youtube.com/embed/JhORY54dGVE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div></p>
+
+<p>Front Camera with larger fov.</p>
+
+<div class="img">
+     <iframe width="512" height="512" src="https://youtube.com/embed/joyEF7Fe5kE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyrosco\
+pe; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<p>Manually positioned camera.</p>
+
+<p>It works.</p>
+
+<h1 id="procedure">Procedure</h1>
+
+<ul>
+<li>Launch LIV (You may require it for virtual controller, but I&rsquo;m not sure)</li>
+<li>Launch VMC</li>
+<li>Set up everything in VMC including the virtual camera, and then export externalcamera.cfg</li>
+<li>Quit LIV</li>
+<li>Compose your xml from externalcamera.cfg</li>
+<li>Launch CameraTool and let it read xml you made
+
+<ul>
+<li>You will see your avatar wearing Oculus touch controllers.</li>
+<li>If so, it&rsquo;s successful. Then quit cameratool.</li>
+</ul></li>
+<li>Launch your game with the option -directcomposition</li>
+<li>Enjoy</li>
+</ul>
+
+<h1 id="what-differs-from-liv">What differs from LIV</h1>
+
+<h4 id="controller-goes-inactive">Controller goes inactive.</h4>
+
+<p>Probably, you cannot move avatar fingers and face expression in VMC. I guess this is because Steam VR goes background when Oculus game is on. Fortunately, trackers keep working.</p>
+
+<p>I&rsquo;m looking for methods to keep both SteamVR and OculusHome active.</p>
+
+<h4 id="no-feedback-screens-that-show-synthesized-images-on-hmd">No feedback screens that show synthesized images on HMD.</h4>
+
+<p>This may be possible with other tools, but I don&rsquo;t have ideas at this moment.</p>
+
+<h1 id="numeric-relations-between-xml-and-cfg">Numeric relations between xml and cfg</h1>
+
+<h2 id="cfg-x-y-z-xml-x-y-z">cfg: (x,y,z) -&gt; xml: (X,Y,Z)</h2>
+
+<ul>
+<li>X = x</li>
+<li>Y = y + 1.65</li>
+<li>Z = -z 　</li>
+</ul>
+
+<p>I don&rsquo;t know what the interception 1.65 means, but this is required to fit the position of hands. This may depends on avatar, games,  or other environments.</p>
+
+<h2 id="realtion-between-fov-and-camera-matrix">Realtion between fov and camera matrix</h2>
+
+<p>I read some documents for OpenCV and more.</p>
+
+<p>A camera matrix is a 3x3 matrix</p>
+
+<ul>
+<li>m[1,1] = fx</li>
+<li>m[1,2] = 0 fixed value</li>
+<li>m[1,3] = cx</li>
+<li>m[2,1] = 0 fixed value</li>
+<li>m[2,2] = fy</li>
+<li>m[2,3] = cy</li>
+<li>m[3,1] = 0 fixed value</li>
+<li>m[3,2] = 0 fixed value</li>
+<li>m[3,3] = 1 fixed value</li>
+</ul>
+
+<p>Anyway, these elements are listed as &ldquo;fx 0 cx 0 fy cy 0 0 1&rdquo; in the xml.</p>
+
+<p>cx, cy corresnpond to center of the image. If 1280 x 960, cx=640 cy=480.</p>
+
+<p>fx, fy are focal length in unit of pixels.</p>
+
+<p>In unity, fov means vertical fov.</p>
+
+<p>So I just cared of the realtion beween fov_y, fy, and the image height H.</p>
+
+<ul>
+<li>fy = H/(2*tan(fov_y/2))</li>
+<li>fx = fy</li>
+</ul>
+
+<h2 id="rotation">Rotation</h2>
+
+<p>It was really time-consuming to find out what those values mean.</p>
+
+<p>Note that the value is coefficients of a unit (normalized) quaternion representing rotation and they are ordered as &ldquo;i j k real&rdquo;.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p><img src="../../img/extcam2camcalib_table.png" alt="Relation in variables" /></p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<ul>
+<li>I learnt a bit on rotation and coordinate transformation.</li>
+<li>Trial-and-error was almost everything.</li>
+<li>The xml for MRC can be generated from externalcamera.cfg
+
+<ul>
+<li>My script file: <a href="https://github.com/yakomaxa/extcam2camcalib">extcam2cameralib</a></li>
+</ul></li>
+</ul>
+
+<h1 id="softwares">Softwares</h1>
+
+<ul>
+<li>Virtual Motion Capture
+
+<ul>
+<li>VMC is developed by <a href="https://twitter.com/sh_akira"> @sh_akira </a></li>
+<li><a href="https://sh-akira.booth.pm/items/999760">Booth</a>  You can download it from here. You can also donate the devepoper.</li>
+<li><a href="https://sh-akira.github.io/VirtualMotionCapture/about.html">Official Page</a></li>
+</ul></li>
+<li>Nanome
+
+<ul>
+<li><a href="https://nanome.ai/nanome/">https://nanome.ai/nanome/</a></li>
+</ul></li>
+<li>LIV
+
+<ul>
+<li><a href="https://liv.tv/">https://liv.tv/</a></li>
+</ul></li>
+<li>VRoidStudio
+
+<ul>
+<li><a href="https://studio.vroid.com/">https://studio.vroid.com/</a></li>
+</ul></li>
+</ul>
+
+<h1 id="references">References</h1>
+
+<ul>
+<li><a href="http://marina.sys.wakayama-u.ac.jp/~tokoi/?date=20090907">カメラパラメータ 床井研究室</a></li>
+<li><a href="http://blawat2015.no-ip.com/~mieki256/diary/201310173.html">Unityとblenderの画角だか視野角だかField Of Viewだかそのへんの話</a></li>
+<li><a href="https://docs.unity3d.com/ja/2017.4/ScriptReference/Camera-fieldOfView.html">Unity FOV</a></li>
+<li><a href="http://labs.eecs.tottori-u.ac.jp/sd/Member/oyamada/OpenCV/html/py_tutorials/py_calib3d/py_calibration/py_calibration.html">OpenCV カメラキャリブレーション（鳥取大学）</a> : Oculus CameraTool uses OpenCV.</li>
+<li><a href="http://opencv.jp/opencv-2.1/cpp/camera_calibration_and_3d_reconstruction.html">OpenCV カメラキャリブレーションと3次元再構成</a></li>
+<li><a href="https://jp.mathworks.com/help/vision/ug/camera-calibration.html">MathWorks カメラ キャリブレーションとは</a></li>
+</ul>
+		
+
+	</div>
+
+	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="true">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+	<div class="pagination">
+		<a href="/minus_kTlogP/post/vmcmrc_ja/" class="left arrow">&#8592;</a>
+		<a href="/minus_kTlogP/post/giftfromnanome_ja/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+
+
+</main>
+
+
+        <footer>
+  
+			<span>
+			&copy; <time datetime="2019-03-22 00:34:39.585195 &#43;0900 JST m=&#43;0.082344671">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -6,10 +6,50 @@
     <description>Recent content in Posts on Sakuma -kTlogP</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Mar 2019 02:10:28 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 22 Mar 2019 00:27:43 +0900</lastBuildDate>
     
 	<atom:link href="http://yakomaxa.github.io/minus_kTlogP/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Gifts from Nanome</title>
+      <link>http://yakomaxa.github.io/minus_kTlogP/post/giftfromnanome_en/</link>
+      <pubDate>Fri, 22 Mar 2019 00:27:43 +0900</pubDate>
+      
+      <guid>http://yakomaxa.github.io/minus_kTlogP/post/giftfromnanome_en/</guid>
+      <description>&lt;p&gt;Nanome inc. is the developer company of VR molecular viewer named Nanome.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Nanomeのノベルティをいただいて着た</title>
+      <link>http://yakomaxa.github.io/minus_kTlogP/post/giftfromnanome_ja/</link>
+      <pubDate>Fri, 22 Mar 2019 00:27:43 +0900</pubDate>
+      
+      <guid>http://yakomaxa.github.io/minus_kTlogP/post/giftfromnanome_ja/</guid>
+      <description>&lt;p&gt;Nanomeというのは、NanomeというVR分子ビューアを開発している会社です。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Camera calibration for Oculus Mixed Reality Capture guided by externalcamera.cfg</title>
+      <link>http://yakomaxa.github.io/minus_kTlogP/post/vmcmrc_en/</link>
+      <pubDate>Thu, 21 Mar 2019 23:00:43 +0900</pubDate>
+      
+      <guid>http://yakomaxa.github.io/minus_kTlogP/post/vmcmrc_en/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I tried to generate xml for Oculus Mixed Reality Capture from externalcamera.cfg.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>VMCとOculusMRCで合成 ~カメラ位置解決編~</title>
+      <link>http://yakomaxa.github.io/minus_kTlogP/post/vmcmrc_ja/</link>
+      <pubDate>Thu, 21 Mar 2019 03:41:00 +0900</pubDate>
+      
+      <guid>http://yakomaxa.github.io/minus_kTlogP/post/vmcmrc_ja/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;要約&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Oculus Mixed Reality Captureのカメラ位置の設定できるようになった。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>分子受肉の話の続き</title>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+               
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-135009439-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+ 
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="description" content="VMCのexternalcamera.cfgからOculusMRC用の設定ファイルをつくる">
+
+
+		<meta property="og:title" content="VMCとOculusMRCで合成 ~カメラ位置解決編~" />
+		<meta property="og:type" content="article">
+		<meta property="og:description" content="VMCのexternalcamera.cfgからOculusMRC用の設定ファイルをつくる" />
+		<meta property="og:url" content="http://yakomaxa.github.io/minus_kTlogP/post/vmcmrc_ja/" />
+		<meta property="og:image" content="http://yakomaxa.github.io/minus_kTlogP/../../img/extcam2camcalib_table.png" />
+		<meta property="og:site_name" content="Sakuma -kTlogP">
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:url" content="http://yakomaxa.github.io/minus_kTlogP/post/vmcmrc_ja/" />
+		<meta name="twitter:image" content="http://yakomaxa.github.io/minus_kTlogP/../../img/extcam2camcalib_table.png" />
+		<meta name="twitter:site" content="@skm58" />
+		<meta name="twitter:creator" content="@skm58" /> 
+
+		<title>
+				VMCとOculusMRCで合成 ~カメラ位置解決編~ &middot; Sakuma -kTlogP
+		</title>
+	
+		
+  		<link rel="stylesheet" href="/minus_kTlogP/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+	
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/minus_kTlogP/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/minus_kTlogP/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/minus_kTlogP/images/apple-touch-icon.png">
+	
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Sakuma -kTlogP" />
+		
+</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/minus_kTlogP/">
+					<h2 class="nav-title">Sakuma -kTlogP</h2>
+				</a>
+				<ul>
+    <li><a href="/minus_kTlogP/about">About</a></li>
+    <li><a href="/minus_kTlogP/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        Koya.S
+        <br>
+        <span>on&nbsp;</span><time datetime="2019-03-21 03:41:00 &#43;0900 JST">March 21, 2019</time>
+</div>
+		<h1 class="post-title">VMCとOculusMRCで合成 ~カメラ位置解決編~</h1>
+<div class="post-line"></div>
+
+		
+
+		<p><strong>要約</strong></p>
+
+<p>Oculus Mixed Reality Captureのカメラ位置の設定できるようになった。</p>
+
+<h1 id="前回-https-yakomaxa-github-io-minus-ktlogp-post-nanomevmcunreal-ja-のあらすじ"><a href="https://yakomaxa.github.io/minus_kTlogP/post/nanomevmcunreal_ja/">前回</a>のあらすじ</h1>
+
+<p>Virtual Motion CaptureとOculus Mixed Reality Captureでクロマキー合成できるようになったけど、カメラ位置合わせができない。</p>
+
+<h3 id="しつこいですが-注意">（しつこいですが）注意</h3>
+
+<p>前回、VMC+MRCを試して環境が壊れてしまった例があったそうですので、実行する場合はご注意ください。</p>
+
+<p>この記事書いてる人も、自分が何をしているのかよく理解していません。</p>
+
+<h1 id="やったこと">やったこと</h1>
+
+<ul>
+<li>まずOculusのCameraToolで適当にカメラキャリブレーションした。USBカメラを使った。</li>
+<li>出力したxmlの中身を読んで、数値の意味を推測した。</li>
+<li>externalcamera.cfgをOculus MRC用のxmlに変換するスクリプトを書いた。</li>
+</ul>
+
+<h1 id="できるようになったこと">できるようになったこと</h1>
+
+<p>VMCでexternalcamera.cfgを出力して、カメラ位置をOculus MRCに反映することができる。</p>
+
+<p>以下のような感じ</p>
+
+<ul>
+<li><p>正面で画角が大きい場合
+<div class="img">
+<iframe width="512" height="512" src="https://www.youtube.com/embed/JhORY54dGVE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyrosco\
+pe; picture-in-picture" allowfullscreen></iframe>
+</div></p></li>
+
+<li><p>カメラ位置フリーで設定した場合
+<div class="img">
+<iframe width="512" height="512" src="https://youtube.com/embed/joyEF7Fe5kE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyrosco\
+pe; picture-in-picture" allowfullscreen></iframe>
+</div></p></li>
+</ul>
+
+<p>ちゃんとできてるように見えます。</p>
+
+<p>あまり手を伸ばすと手首が離れたりしてちょっと怖い。すこし手に細工をしてます。</p>
+
+<h1 id="vmc-mrc合成作業流れ">VMC + MRC合成作業流れ</h1>
+
+<ul>
+<li>LIVを起動する
+
+<ul>
+<li>仮想コントローラー目当てで、念の為つかっている。</li>
+</ul></li>
+<li>VMCを起動、設定を済ませる。忘れずに仮想カメラをONにする</li>
+<li>VMCからexternalcamera.cfgを出力する</li>
+<li>externalcamera.cfgからOculus CameraTool用のcameracalibration.xmlをつくる
+
+<ul>
+<li>ここで下に書いたスクリプトを使っている。</li>
+</ul></li>
+<li>LIVはこのあと不要なので終了する
+
+<ul>
+<li>LIV側で、LIVを終了した時に仮想コントローラーを消さない設定をしておくとよい感じに進む。</li>
+</ul></li>
+<li>CameraToolを起動、つくったxmlをよみこんでSave to OVRserverする
+
+<ul>
+<li>CameraToolの画面でVMCからのキャプチャーとコントローラーのモデルが合成表示されるので、両者の手の位置合わせが正しいか確認できる。</li>
+<li>よければCameraToolを終了する。</li>
+</ul></li>
+<li>目的のゲームを端末から -directcomposition で起動する</li>
+<li>楽しむ</li>
+</ul>
+
+<h1 id="スクリプト">スクリプト</h1>
+
+<h3 id="extcam2camcalib">extcam2camcalib</h3>
+
+<p><a href="https://github.com/yakomaxa/extcam2camcalib">extcam2camcalib</a> ：恥ずかしながら公開</p>
+
+<ul>
+<li>VMCから出力したcfgをxmlにすることしか考えていない
+
+<ul>
+<li>レンズの歪み補正係数（5変数）が常に0になってるので、本当のカメラでのMRには向かない。</li>
+<li>xmlの下の方のクロマキー関係の変数は触っていない。いまのところ緑背景しかつかえない。</li>
+</ul></li>
+<li>一部変数が直書きされている
+
+<ul>
+<li>画面サイズとか・・・。</li>
+</ul></li>
+<li>R版とpython版がある
+
+<ul>
+<li>だいたい同じだけど、自分はRでやっている。</li>
+<li>pythonはpyinstallerでバイナリにするぞ！とか思って書いたが、windowsでpythonつかうのが不慣れすぎて力尽きた。</li>
+</ul></li>
+<li>他の人の環境で使えるかはわからない。
+
+<ul>
+<li>pythonにしてもRにしても、外部のライブラリがいる。</li>
+<li>すくなくとも変数変換の参考にはなるのでは・・・</li>
+</ul></li>
+</ul>
+
+<h3 id="template-xml">template.xml</h3>
+
+<p>スクリプトと同じディレクトリにtemplate.xmlというファイルを置く必要がある（一緒にgithubにおいてあるやつ）。これを雛形にして値が出力される。</p>
+
+<p>このファイルの最初の方にカメラの名前（？）を書く場所があるが、自分の場合</p>
+
+<p><code>&lt;camera_name&gt;&quot;0411&amp;amp;pid_0260&amp;amp;mi_00#7&amp;amp;17e718de&amp;amp;&quot;&lt;/camera_name&gt;</code></p>
+
+<p>と書いてあった。しかし、ここを空欄</p>
+
+<p><code>&lt;camera_name&gt;&quot;&quot;&lt;/camera_name&gt;</code></p>
+
+<p>にしても手元では動いたので、githubに置いてあるやつは空欄にしてある。この辺りまったく手探りでわからない。</p>
+
+<h1 id="livでやる時との違い">LIVでやる時との違い</h1>
+
+<h4 id="コントローラーの入力ができなくなる">コントローラーの入力ができなくなる</h4>
+
+<p>これがあるので、いまのところLIVでやれる場合はLIVでやった方が良い。</p>
+
+<p>具体的には指と表情の操作ができなくなるので、VMCの良さを一部損ねてしまう。ただ、幸いなことにトラッキングはできる。</p>
+
+<p>仕組みを理解してないので以下想像だが、Oculusのゲームを起動するとSteamVRが裏側に行ってしまうようだ。結果、SteamVR側で動いてる（とおもわれる）VMCのコントローラー操作ができなくなる。</p>
+
+<p>もしかすると、世の中には「SteamVRとOculusHome、どちらもバックグラウンドにしない方法！」みたいのがあるかもしれないので、しばらく探してみようとは思う。</p>
+
+<h4 id="hmdのほうに合成映像を出せない">HMDのほうに合成映像を出せない</h4>
+
+<p>なにかツールを使ったらできるのかもしれないけど、今のところパッとはできてない。</p>
+
+<h1 id="数値の対応関係のまとめ">数値の対応関係のまとめ</h1>
+
+<p><img src="../../img/extcam2camcalib.png" alt="試作スクリプトでの座標・回転などの対応表" /></p>
+
+<p>試行錯誤で決めたので謎が多い。たとえばカメラのy座標に謎の定数1.65がついてるが、これは「手の位置の具合からして1.65がベストかな？」とかいう感じで適当に決めた。なのでセンサーの設定とかゲームによって変わってしまうかもしれない。</p>
+
+<h1 id="備忘録">備忘録</h1>
+
+<p>まとめ画像と重複するが、xmlの中身を読んだ過程の備忘録。</p>
+
+<p>VMCで出力されるexternalcamera.cfgをcfg、MRC(CameraTool)に入力するcameracalibration.xmlをxmlと呼ぶことにする。</p>
+
+<h2 id="cfgでのカメラ座標-x-y-z-とxmlでの-x-y-z-の関係">cfgでのカメラ座標(x,y,z)とxmlでの(X,Y,Z)の関係</h2>
+
+<p><code>&lt;translation type_id=&quot;opencv-matrix&quot;&gt;</code></p>
+
+<p>の部分</p>
+
+<ul>
+<li>X = x</li>
+<li>Y = y + 1.65 (謎の定数）</li>
+<li>Z = -z 　座標系の左右が違う</li>
+</ul>
+
+<p>どれがどの座標か推測しやすいので、謎の定数を除けば、比較的簡単にわかった。</p>
+
+<h2 id="fovとcamera-matrixの関係">fovとcamera matrixの関係</h2>
+
+<p><code>&lt;camera_matrix type_id=&quot;opencv-matrix&quot;&gt;</code></p>
+
+<p>の部分</p>
+
+<p>fovとかカメラ行列って何？というところからスタート・・・</p>
+
+<p>カメラ行列mは3x3の行列で、</p>
+
+<ul>
+<li>m[1,1] = fx</li>
+<li>m[1,2] = 0 固定</li>
+<li>m[1,3] = cx</li>
+<li>m[2,1] = 0 固定</li>
+<li>m[2,2] = fy</li>
+<li>m[2,3] = cy</li>
+<li>m[3,1] = 0 固定</li>
+<li>m[3,2] = 0 固定</li>
+<li>m[3,3] = 1 固定</li>
+</ul>
+
+<p>行と列が逆かもしれない。いずれにしても、今回のxmlの中では、fx 0 cx 0 fy cy 0 0 1 と並べて書く。</p>
+
+<p>行列の定義などは以下を参照した。</p>
+
+<ul>
+<li><a href="http://labs.eecs.tottori-u.ac.jp/sd/Member/oyamada/OpenCV/html/py_tutorials/py_calib3d/py_calibration/py_calibration.html">OpenCV カメラキャリブレーション（鳥取大学）</a></li>
+<li><a href="http://opencv.jp/opencv-2.1/cpp/camera_calibration_and_3d_reconstruction.html">OpenCV カメラキャリブレーションと3次元再構成</a>
+
+<ul>
+<li>今回のxmlはOpenCV由来のようなので、この周辺が最も参考になった</li>
+</ul></li>
+<li><a href="https://jp.mathworks.com/help/vision/ug/camera-calibration.html">MathWorks カメラ キャリブレーションとは</a> ピクセルの歪みとしてsという変数が入ってたのが理解の助けになった。</li>
+</ul>
+
+<p>cxとcyは、画像の中心になるようにとる。仮に1280 x 960のサイズだったら, cx=640 cy=480とする。これだとぴったり中心じゃない気もするけど、細かいことは気にしていない。</p>
+
+<p>fxとfyは、それぞれピクセル単位での焦点距離。ピンホールカメラとして考える、らしい。fxと水平画角、fyと垂直画角が関係するらしい。以下の文書などを参考にした。</p>
+
+<ul>
+<li><a href="http://marina.sys.wakayama-u.ac.jp/~tokoi/?date=20090907">カメラパラメータ 床井研究室</a></li>
+<li><a href="http://blawat2015.no-ip.com/~mieki256/diary/201310173.html">Unityとblenderの画角だか視野角だかField Of Viewだかそのへんの話</a></li>
+<li><a href="https://docs.unity3d.com/ja/2017.4/ScriptReference/Camera-fieldOfView.html">Unity FOV</a></li>
+</ul>
+
+<p>Unityのドキュメントによれば「This is the vertical field of view」らしいので、垂直画角だけ考えることにする。</p>
+
+<p>画像の高さだけ考え、垂直画角をfov_yとすると</p>
+
+<p>(H/2)/fy = tan(fov_y/2)</p>
+
+<p>なので、</p>
+
+<p>fy = H/(2*tan(fov_y/2))</p>
+
+<p>fx = fy</p>
+
+<p>で計算。角度は弧度法の値なので、ラジアンに直すか弧度法用の関数をつかう。</p>
+
+<h2 id="回転">回転</h2>
+
+<p><code>&lt;rotation type_id=&quot;opencv-matrix&quot;&gt;</code></p>
+
+<p>の部分</p>
+
+<p>ここが一番難しかった。</p>
+
+<h4 id="正体不明の４変数-四元数">正体不明の４変数 -&gt; 四元数</h4>
+
+<p>実際にキャリブレーションしたときのxmlを読んで、数値をなんとなく二乗して全部足したら約1.0だった -&gt; もしかして四元数・・・？</p>
+
+<p>係数の順番も謎なんだけど、たぶん real i j k か i j k real だと推測して両方試した。</p>
+
+<h4 id="回転行列の角度の正の方向が不明-適当に決めた">回転行列の角度の正の方向が不明 -&gt; 適当に決めた</h4>
+
+<p>試行錯誤で、全部の軸について rx&rsquo; = 360 - rx などとするとうまく一致することを確認した。たぶん座標系が反転してるのとつじつまがあう。</p>
+
+<h4 id="回転行列の掛け算の順番が不明-適当に決めた">回転行列の掛け算の順番が不明 -&gt; 適当に決めた</h4>
+
+<p>Unityだと回転行列の作用順番は<a href="https://answers.unity.com/questions/1435216/are-these-rotation-matrices-right.html">YXZかZXY</a>らしいので、その２つに絞った。けど今回のやつにはあまり関係なかったかもしれない。とりあえず全パターン試さずに済んだのは運がよかった。</p>
+
+<h1 id="感想">感想</h1>
+
+<ul>
+<li>不慣れな概念が多くて新鮮だった。</li>
+<li>試行錯誤で推理するのは面白い。ただパターンが多いとこまる。</li>
+<li>できたし、まあいいか。</li>
+</ul>
+
+<h1 id="メモ">メモ</h1>
+
+<ul>
+<li>MRCが起動できるか試してないけど、The ClimbとかのVMC合成やれるんじゃないだろうか？</li>
+</ul>
+
+<h1 id="ソフト">ソフト</h1>
+
+<ul>
+<li>Virtual Motion Capture
+
+<ul>
+<li>VMC の開発者は<a href="https://twitter.com/sh_akira"> @sh_akira </a>さんです</li>
+<li><a href="https://sh-akira.booth.pm/items/999760">Booth</a></li>
+<li><a href="https://sh-akira.github.io/VirtualMotionCapture/about.html">Official Page</a></li>
+<li>このソフトがすごいのでMRCで頑張るやる気が出ている</li>
+</ul></li>
+<li>Nanome
+
+<ul>
+<li><a href="https://nanome.ai/nanome/">https://nanome.ai/nanome/</a></li>
+<li>おそらく唯一の実用レベルVR分子ビュアー</li>
+<li>諸事情によりOculusストア版を使っている</li>
+</ul></li>
+<li>LIV
+
+<ul>
+<li><a href="https://liv.tv/">https://liv.tv/</a></li>
+<li>つかえなくなってわかる便利さ・・・</li>
+</ul></li>
+<li>VRoidStudio
+
+<ul>
+<li><a href="https://studio.vroid.com/">https://studio.vroid.com/</a></li>
+<li>今回はアバターの手の部分をいじる必要があった。</li>
+</ul></li>
+</ul>
+		
+
+	</div>
+
+	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="true">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+	<div class="pagination">
+		<a href="/minus_kTlogP/post/nanomevmcunreal_ja/" class="left arrow">&#8592;</a>
+		<a href="/minus_kTlogP/post/vmcmrc_en/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+
+
+</main>
+
+
+        <footer>
+  
+			<span>
+			&copy; <time datetime="2019-03-22 00:34:39.585473 &#43;0900 JST m=&#43;0.082622184">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>
