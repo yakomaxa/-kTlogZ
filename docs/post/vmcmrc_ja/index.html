@@ -83,6 +83,8 @@ if (!doNotTrack) {
 
 <p>Oculus Mixed Reality Captureのカメラ位置の設定できるようになった。</p>
 
+<hr />
+
 <h1 id="前回-https-yakomaxa-github-io-minus-ktlogp-post-nanomevmcunreal-ja-のあらすじ"><a href="https://yakomaxa.github.io/minus_kTlogP/post/nanomevmcunreal_ja/">前回</a>のあらすじ</h1>
 
 <p>Virtual Motion CaptureとOculus Mixed Reality Captureでクロマキー合成できるようになったけど、カメラ位置合わせができない。</p>
@@ -138,7 +140,7 @@ pe; picture-in-picture" allowfullscreen></iframe>
 <li>externalcamera.cfgからOculus CameraTool用のcameracalibration.xmlをつくる
 
 <ul>
-<li>ここで下に書いたスクリプトを使っている。</li>
+<li>ここでスクリプトを使っている。</li>
 </ul></li>
 <li>LIVはこのあと不要なので終了する
 
@@ -162,6 +164,16 @@ pe; picture-in-picture" allowfullscreen></iframe>
 <p><a href="https://github.com/yakomaxa/extcam2camcalib">extcam2camcalib</a> ：恥ずかしながら公開</p>
 
 <ul>
+<li>R版とpython版がある
+
+<ul>
+<li>だいたい同じだけど、自分はRでやっている。</li>
+</ul></li>
+<li>バイナリになってません
+
+<ul>
+<li>python版はpyinstallerでコンパイルする！と思って書いたが、windowsでpythonつかうのが不慣れすぎて力尽きた。</li>
+</ul></li>
 <li>VMCから出力したcfgをxmlにすることしか考えていない
 
 <ul>
@@ -172,12 +184,6 @@ pe; picture-in-picture" allowfullscreen></iframe>
 
 <ul>
 <li>画面サイズとか・・・。</li>
-</ul></li>
-<li>R版とpython版がある
-
-<ul>
-<li>だいたい同じだけど、自分はRでやっている。</li>
-<li>pythonのやつはpyinstallerでバイナリにするぞ！と思って書いたが、windowsでpythonつかうのが不慣れすぎて力尽きた。</li>
 </ul></li>
 <li>他の人の環境で使えるかはわからない。
 
@@ -221,9 +227,11 @@ pe; picture-in-picture" allowfullscreen></iframe>
 
 <p><img src="../../img/extcam2camcalib.png" alt="試作スクリプトでの座標・回転などの対応表" /></p>
 
-<p>試行錯誤で決めたので謎が多い。たとえばカメラのy座標に謎の定数1.65がついてるが、これは「手の位置の具合からして1.65がベストかな？」とかいう感じで適当に決めた。なのでセンサーの設定とかゲームによって変わってしまうかもしれない。</p>
+<p>試行錯誤で決めたので謎が多い。たとえばカメラのy座標に謎の定数1.65がついてるが、これは「手の位置の具合からして1.65がベストかな？」とかいう感じで適当に決めた。なのでセンサーの設定とかアバターのサイズとか、ゲームによって変わってしまうかもしれない。</p>
 
-<h1 id="備忘録">備忘録</h1>
+<hr />
+
+<h1 id="以下備忘録です">以下備忘録です</h1>
 
 <p>まとめ画像と重複するが、xmlの中身を読んだ過程の備忘録。</p>
 
@@ -348,13 +356,13 @@ pe; picture-in-picture" allowfullscreen></iframe>
 <li>VMC の開発者は<a href="https://twitter.com/sh_akira"> @sh_akira </a>さんです</li>
 <li><a href="https://sh-akira.booth.pm/items/999760">Booth</a></li>
 <li><a href="https://sh-akira.github.io/VirtualMotionCapture/about.html">Official Page</a></li>
-<li>このソフトがすごいのでMRCで頑張るやる気が出ている</li>
+<li>このソフトが楽しいのでMRCでできるよう頑張ってみた</li>
 </ul></li>
 <li>Nanome
 
 <ul>
 <li><a href="https://nanome.ai/nanome/">https://nanome.ai/nanome/</a></li>
-<li>おそらく唯一の実用レベルVR分子ビューア</li>
+<li>おそらく唯一の実用レベルVR分子ビューアと思われる</li>
 </ul></li>
 <li>LIV
 
@@ -390,7 +398,7 @@ pe; picture-in-picture" allowfullscreen></iframe>
         <footer>
   
 			<span>
-			&copy; <time datetime="2019-03-23 00:07:41.531975 &#43;0900 JST m=&#43;0.090847014">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			&copy; <time datetime="2019-03-23 22:05:17.340787 &#43;0900 JST m=&#43;0.189442812">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
 			</span>
 		</footer>
 
