@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+               
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-135009439-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+ 
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="description" content="Run mican on pymol">
+
+
+		<meta property="og:title" content="MICAN on PyMOL 🍊" />
+		<meta property="og:type" content="article">
+		<meta property="og:description" content="Run mican on pymol" />
+		<meta property="og:url" content="http://yakomaxa.github.io/minus_kTlogP/post/mican_on_pymol_en/" />
+		<meta property="og:image" content="http://yakomaxa.github.io/minus_kTlogP//img/minus_kTlogP.png" />
+		<meta property="og:site_name" content="Sakuma -kTlogP">
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:url" content="http://yakomaxa.github.io/minus_kTlogP/post/mican_on_pymol_en/" />
+		<meta name="twitter:image" content="http://yakomaxa.github.io/minus_kTlogP//img/minus_kTlogP.png" />
+		<meta name="twitter:site" content="@skm58" />
+		<meta name="twitter:creator" content="@skm58" /> 
+
+		<title>
+				MICAN on PyMOL 🍊 &middot; Sakuma -kTlogP
+		</title>
+	
+		
+  		<link rel="stylesheet" href="/minus_kTlogP/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+	
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/minus_kTlogP/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/minus_kTlogP/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/minus_kTlogP/images/apple-touch-icon.png">
+	
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Sakuma -kTlogP" />
+		
+</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/minus_kTlogP/">
+					<h2 class="nav-title">Sakuma -kTlogP</h2>
+				</a>
+				<ul>
+    <li><a href="/minus_kTlogP/about">About</a></li>
+    <li><a href="/minus_kTlogP/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        Koya.S
+        <br>
+        <span>on&nbsp;</span><time datetime="2019-05-11 02:37:01 &#43;0900 JST">May 11, 2019</time>
+</div>
+		<h1 class="post-title">MICAN on PyMOL 🍊</h1>
+<div class="post-line"></div>
+
+		
+
+		<p>MICAN is a protein structure alignment software. Most notable feature of Mican is that it can align two proteins in non-sequential manners.</p>
+
+<p>I often use mican as a commandline tool, but visualizing the results with pymol needs parsing mican&rsquo;s output file like below.</p>
+
+<pre><code>mican protein1.pdb protein2 -o output.pdb
+extract_models_all.sh output.pdb # My own script to parse NMR-like model
+pymol output.model1.pdb output.model2.pdb
+
+</code></pre>
+
+<h1 id="pymol-wrapper">Pymol wrapper</h1>
+
+<p>So I wrote a wrapper script to run mican on pymol.</p>
+
+<p><a href="https://github.com/yakomaxa/micanpymol">micanpymol</a></p>
+
+<p>Using this, you can interactively run mican. It&rsquo;s fun. This will be beneficial since mican has many alignment modes or parameters.</p>
+
+<h1 id="how-to-use">How to use</h1>
+
+<p>Launch pymol</p>
+
+<p><code>pymol protein1.pdb protein2.pdb</code></p>
+
+<p>Load the script (or give it in pymolrc if you want it every pymol session)</p>
+
+<p><code>run micanpymol.py</code></p>
+
+<p>Run mican. Third argument is the option given to mican.</p>
+
+<p><code>mican protein1, protein2, -s</code></p>
+
+<p>You need mican executable in your PATH. Launching pymol from GUI sometimes fail to load PATH (in my environment). It&rsquo;s a good choice to change &ldquo;mican&rdquo; in the script to the full path to the executable.</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li>MICAN website
+
+<ul>
+<li><a href="http://www.tbp.cse.nagoya-u.ac.jp/MICAN/">http://www.tbp.cse.nagoya-u.ac.jp/MICAN/</a></li>
+<li>You need a Mican executable. Let&rsquo;s compile it for MAC.</li>
+</ul></li>
+<li>MICAN: a protein structure alignment algorithm that can handle Multiple-chains, Inverse alignments, Cα only models, Alternative alignments, and Non-sequential alignments
+
+<ul>
+<li><a href="http://www.biomedcentral.com/1471-2105/14/24/abstract">http://www.biomedcentral.com/1471-2105/14/24/abstract</a></li>
+</ul></li>
+<li>MICAN-SQ: a sequential protein structure alignment program that is applicable to monomers and all types of oligomers
+
+<ul>
+<li><a href="https://academic.oup.com/bioinformatics/article-abstract/34/19/3324/4992143?redirectedFrom=fulltext">https://academic.oup.com/bioinformatics/article-abstract/34/19/3324/4992143?redirectedFrom=fulltext</a></li>
+</ul></li>
+</ul>
+
+<p>🍊
+MIKAN is a kind of Japanese orange, the software is named after it.</p>
+		
+
+	</div>
+
+	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="true">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+	<div class="pagination">
+		<a href="/minus_kTlogP/post/mican_on_pymol_ja/" class="left arrow">&#8592;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+
+
+</main>
+
+
+        <footer>
+  
+			<span>
+			&copy; <time datetime="2019-05-11 06:39:13.687003 &#43;0900 JST m=&#43;0.057816583">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

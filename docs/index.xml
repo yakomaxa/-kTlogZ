@@ -6,10 +6,28 @@
     <description>Recent content on Sakuma -kTlogP</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Mar 2019 00:27:43 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 11 May 2019 02:37:01 +0900</lastBuildDate>
     
 	<atom:link href="http://yakomaxa.github.io/minus_kTlogP/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MICAN on PyMOL 🍊</title>
+      <link>http://yakomaxa.github.io/minus_kTlogP/post/mican_on_pymol_en/</link>
+      <pubDate>Sat, 11 May 2019 02:37:01 +0900</pubDate>
+      
+      <guid>http://yakomaxa.github.io/minus_kTlogP/post/mican_on_pymol_en/</guid>
+      <description>&lt;p&gt;MICAN is a protein structure alignment software. Most notable feature of Mican is that it can align two proteins in non-sequential manners.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PyMOLでMICANする🍊</title>
+      <link>http://yakomaxa.github.io/minus_kTlogP/post/mican_on_pymol_ja/</link>
+      <pubDate>Sat, 11 May 2019 02:37:01 +0900</pubDate>
+      
+      <guid>http://yakomaxa.github.io/minus_kTlogP/post/mican_on_pymol_ja/</guid>
+      <description>&lt;p&gt;PymolからMICANを使えるようにしたら楽しい。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Gifts from Nanome</title>
@@ -18,6 +36,15 @@
       
       <guid>http://yakomaxa.github.io/minus_kTlogP/post/giftfromnanome_en/</guid>
       <description>&lt;p&gt;Nanome is the developer company of VR molecular viewer named Nanome.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Nanomeにグッズを頂いた</title>
+      <link>http://yakomaxa.github.io/minus_kTlogP/post/giftfromnanome_ja/</link>
+      <pubDate>Fri, 22 Mar 2019 00:27:43 +0900</pubDate>
+      
+      <guid>http://yakomaxa.github.io/minus_kTlogP/post/giftfromnanome_ja/</guid>
+      <description>&lt;p&gt;Nanomeから色々いただきました。&lt;/p&gt;</description>
     </item>
     
     <item>
