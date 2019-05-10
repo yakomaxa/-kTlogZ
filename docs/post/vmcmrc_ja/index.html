@@ -24,12 +24,12 @@ if (!doNotTrack) {
 		<meta property="og:type" content="article">
 		<meta property="og:description" content="VMCのexternalcamera.cfgからOculusMRC用の設定ファイルをつくる" />
 		<meta property="og:url" content="http://yakomaxa.github.io/minus_kTlogP/post/vmcmrc_ja/" />
-		<meta property="og:image" content="http://yakomaxa.github.io/minus_kTlogP//img/extcam2camcalib_table.png" />
+		<meta property="og:image" content="http://yakomaxa.github.io/minus_kTlogP//img/extcam2camcali_table.png" />
 		<meta property="og:site_name" content="Sakuma -kTlogP">
 
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:url" content="http://yakomaxa.github.io/minus_kTlogP/post/vmcmrc_ja/" />
-		<meta name="twitter:image" content="http://yakomaxa.github.io/minus_kTlogP//img/extcam2camcalib_table.png" />
+		<meta name="twitter:image" content="http://yakomaxa.github.io/minus_kTlogP//img/extcam2camcali_table.png" />
 		<meta name="twitter:site" content="@skm58" />
 		<meta name="twitter:creator" content="@skm58" /> 
 
@@ -110,18 +110,24 @@ if (!doNotTrack) {
 <p>カメラ位置と画角を変えてテストした。</p>
 
 <ul>
-<li><p>正面で画角が大きい場合
+<li>Oculus Rift + Touch</li>
+<li>Virtual Motion Caputure (ちょっと古いやつ)</li>
+<li>Nanome from Oculus store</li>
+</ul>
+
+<p>正面で画角が大きい場合</p>
+
 <div class="img">
 <iframe width="512" height="512" src="https://www.youtube.com/embed/JhORY54dGVE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyrosco\
 pe; picture-in-picture" allowfullscreen></iframe>
-</div></p></li>
+</div>
 
-<li><p>カメラ位置フリーで設定、画角小さめの場合
+<p>カメラ位置フリーで設定、画角小さめの場合</p>
+
 <div class="img">
 <iframe width="512" height="512" src="https://youtube.com/embed/joyEF7Fe5kE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyrosco\
 pe; picture-in-picture" allowfullscreen></iframe>
-</div></p></li>
-</ul>
+</div>
 
 <p>ちゃんとできてるように見える。</p>
 
@@ -164,16 +170,13 @@ pe; picture-in-picture" allowfullscreen></iframe>
 <p><a href="https://github.com/yakomaxa/extcam2camcalib">extcam2camcalib</a> ：恥ずかしながら公開</p>
 
 <ul>
-<li>R版とpython版がある
+<li>R版とpython版がある。だいたい同じだけど、自分はRでやっている。</li>
+<li>バイナリになってません
 
 <ul>
-<li>だいたい同じだけど、自分はRでやっている。</li>
-</ul></li>
-<li>バイナリになってません。
-
-<ul>
-<li>python版はpyinstallerでコンパイルする！とか思って書いたが、windowsでpythonつかうのが不慣れすぎて力尽きた。</li>
-<li>cx_Freezeとかやる気がでたら、ちゃんときれいにします。</li>
+<li>python版はpyinstallerでコンパイルする！そのあと公開する！とか思って書いたが、力尽きた。</li>
+<li>なので外部のライブラリがいります。めんどくさい。</li>
+<li>cx_Freezeとか試すやる気がでたら、ちゃんときれいにします。</li>
 </ul></li>
 <li>VMCから出力したcfgをxmlにすることしか考えていない
 
@@ -186,12 +189,7 @@ pe; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>画面サイズとか・・・。もし使うときは適当に書き換えてください。</li>
 </ul></li>
-<li>他の人の環境で使えるかはわからない。
-
-<ul>
-<li>pythonにしてもRにしても、外部のライブラリがいる。</li>
-<li>すくなくとも変数変換の参考にはなる（かも）</li>
-</ul></li>
+<li>他の人の環境で使えるかはわからない。</li>
 </ul>
 
 <h3 id="template-xml">template.xml</h3>
@@ -399,7 +397,7 @@ pe; picture-in-picture" allowfullscreen></iframe>
         <footer>
   
 			<span>
-			&copy; <time datetime="2019-03-24 02:35:10.55584 &#43;0900 JST m=&#43;0.561749892">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			&copy; <time datetime="2019-05-11 06:09:27.762473 &#43;0900 JST m=&#43;0.065084194">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
 			</span>
 		</footer>
 

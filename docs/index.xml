@@ -6,10 +6,28 @@
     <description>Recent content on Sakuma -kTlogP</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Mar 2019 23:00:43 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 11 May 2019 02:37:01 +0900</lastBuildDate>
     
 	<atom:link href="http://yakomaxa.github.io/minus_kTlogP/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MICAN on PyMOL 🍊</title>
+      <link>http://yakomaxa.github.io/minus_kTlogP/post/mican_on_pymol_en/</link>
+      <pubDate>Sat, 11 May 2019 02:37:01 +0900</pubDate>
+      
+      <guid>http://yakomaxa.github.io/minus_kTlogP/post/mican_on_pymol_en/</guid>
+      <description>&lt;p&gt;MICAN is a protein structure alignment software. Most notable feature of Mican is that it can align two proteins in non-sequential manners.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PyMOLでMICANする🍊</title>
+      <link>http://yakomaxa.github.io/minus_kTlogP/post/mican_on_pymol_ja/</link>
+      <pubDate>Sat, 11 May 2019 02:37:01 +0900</pubDate>
+      
+      <guid>http://yakomaxa.github.io/minus_kTlogP/post/mican_on_pymol_ja/</guid>
+      <description>&lt;p&gt;PymolからMICANを使えるようにしたら楽しい。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Camera calibration for Oculus Mixed Reality Capture guided by externalcamera.cfg</title>
