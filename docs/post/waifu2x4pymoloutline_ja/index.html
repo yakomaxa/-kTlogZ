@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+               
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-135009439-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+ 
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+		<meta property="og:title" content="pymolの画像をwaifu2xで高解像度化する" />
+		<meta property="og:type" content="article">
+		<meta property="og:description" content="" />
+		<meta property="og:url" content="http://yakomaxa.github.io/minus_kTlogP/post/waifu2x4pymoloutline_ja/" />
+		<meta property="og:image" content="http://yakomaxa.github.io/minus_kTlogP//img/minus_kTlogP.png" />
+		<meta property="og:site_name" content="Sakuma -kTlogP">
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:url" content="http://yakomaxa.github.io/minus_kTlogP/post/waifu2x4pymoloutline_ja/" />
+		<meta name="twitter:image" content="http://yakomaxa.github.io/minus_kTlogP//img/minus_kTlogP.png" />
+		<meta name="twitter:site" content="@skm58" />
+		<meta name="twitter:creator" content="@skm58" /> 
+
+		<title>
+				pymolの画像をwaifu2xで高解像度化する &middot; Sakuma -kTlogP
+		</title>
+	
+		
+  		<link rel="stylesheet" href="/minus_kTlogP/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+	
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/minus_kTlogP/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/minus_kTlogP/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/minus_kTlogP/images/apple-touch-icon.png">
+	
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Sakuma -kTlogP" />
+		
+</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/minus_kTlogP/">
+					<h2 class="nav-title">Sakuma -kTlogP</h2>
+				</a>
+				<ul>
+    <li><a href="/minus_kTlogP/about">About</a></li>
+    <li><a href="/minus_kTlogP/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        Koya.S
+        <br>
+        <span>on&nbsp;</span><time datetime="2019-07-02 00:22:21 &#43;0900 JST">July 2, 2019</time>
+</div>
+		<h1 class="post-title">pymolの画像をwaifu2xで高解像度化する</h1>
+<div class="post-line"></div>
+
+		
+
+		<p>いや出力時に解像度調整しろよ、という意見はごもっともです。ただ輪郭線の問題を超えれなかっただけ。</p>
+
+<p>極小ネタですが、メモ。</p>
+
+<p>PyMOLに詳しい方なら、もっと素直な解決策をご存知かもしれないです。</p>
+
+<h1 id="結果">結果</h1>
+
+<p>こういう感じ</p>
+
+<h1 id="pymolで輪郭線ありの絵を出す">PyMOLで輪郭線ありの絵を出す</h1>
+
+<p>分子構造を描画するとき、みなさん固有の流儀めいたものがあると思います。
+私は図を作るとき、PyMOLでアニメ風というかなんというか、平面的な感じにするのが好きです。
+基本はこういう感じです。</p>
+
+<p><img src="../../img/1ema_300.png" alt="pymol_outline" /></p>
+
+<p>そのため色々パラメタを変えるのですが、自分的に重要なのが輪郭線です。</p>
+
+<p>つまり</p>
+
+<p><code>set ray_trace_mode , 1</code></p>
+
+<p>などとします。これで輪郭線が表示されます。</p>
+
+<p>…ですが、このようにして出した輪郭線は、出力画像サイズによって幅が変化します。これだと「いい感じの太さの輪郭のまま解像度高くして出力」ということができないので困ります。</p>
+
+<p>例えば1200x1200だとこういう感じになります。</p>
+
+<p><a href="../../img/1ema_1200.png">ray 1200,1200</a></p>
+
+<p>輪郭が！細い！</p>
+
+<p>set ray_trace_gainとかで線幅が変えられるっぽいですが、余計な線が出現したりして、狙った通りにやるのは難しい。いい加減疲れるので、別の方法を考えることにしました。</p>
+
+<h1 id="waifu2x">waifu2x</h1>
+
+<p>waifu2xを使用します。有名な超解像システムです。線画的な分子画像なら、特にうまく動いてくれると期待されます。今回はバッチで処理したいのもあり、ローカルで動かせるようにしました。設定は<a href="https://github.com/nagadomi/waifu2x">github</a>で説明されている通りで、問題なく完了しました。</p>
+
+<h1 id="結果-1">結果</h1>
+
+<p>思惑通り、うまく動いています。すごい。
+これで輪郭太めな立体構造画像を高解像で好きなだけ作れるようになりました。ありがたいことです。</p>
+
+<p>1x
+2x
+4x</p>
+
+<p>ただ元画像から謎の変換をかけているので、研究発表などに使うときは、何か変になってしまっていないかよくチェックする必要があるかと思います。</p>
+
+<p>以下の画像は1MBNですが、97残基目のHISの側鎖stickと後ろのsphereの溝部分の前後関係が少し怪しくなっています。</p>
+
+<p><a href="../../img/1mbn1200.png">ray 1200,1200</a></p>
+
+<p>以上、小ネタでした。</p>
+
+<ul>
+<li><a href="https://github.com/nagadomi/waifu2x">waifu2x</a></li>
+</ul>
+		
+
+	</div>
+
+	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="true">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+	<div class="pagination">
+		<a href="/minus_kTlogP/post/mican_on_pymol_en/" class="left arrow">&#8592;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+
+
+</main>
+
+
+        <footer>
+  
+			<span>
+			&copy; <time datetime="2019-07-02 00:50:01.488416 &#43;0900 JST m=&#43;0.087011680">2019</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>
