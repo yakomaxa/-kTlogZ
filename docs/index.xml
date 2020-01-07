@@ -6,10 +6,21 @@
     <description>Recent content on Sakuma -kTlogP</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 02 Jul 2019 00:22:21 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jan 2020 03:52:28 +0900</lastBuildDate>
     
 	<atom:link href="http://yakomaxa.github.io/minus_kTlogP/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>構造おみくじ</title>
+      <link>http://yakomaxa.github.io/minus_kTlogP/post/omikuji/</link>
+      <pubDate>Wed, 08 Jan 2020 03:52:28 +0900</pubDate>
+      
+      <guid>http://yakomaxa.github.io/minus_kTlogP/post/omikuji/</guid>
+      <description> PDB構造おみくじ 
+ #myViewer{ width:500px; height: 500px; position:relative; }  ランダムPDB構造おみくじ 
+ //Create plugin instance var viewerInstance = new PDBeMolstarPlugin(); var l = 3; var c1 = &#34;abcdefghijklmnopqrstuvwxyz0123456789&#34;; var c0 = &#34;123456789&#34;; var c0l = c0.length var c1l = c1.length; var rw = c0[Math.floor(Math.random()*c0l)]; for(var i=0; i説明  リロードするたびにランダムに構造を表示するだけ。 ランダムな４文字をPDBにqueryしているだけなのでハズレがあります。 気が向いたらもうちょっと上手くやるように直します。  </description>
+    </item>
     
     <item>
       <title>Resize PyMOL images larger keeping the outline bold using waifu2x</title>
