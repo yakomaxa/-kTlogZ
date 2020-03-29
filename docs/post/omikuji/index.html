@@ -80,8 +80,10 @@ if (!doNotTrack) {
 
 		<h2 id="molstarの勉強を兼ねたpdb構造おみくじ">molstarの勉強を兼ねたPDB構造おみくじ</h2>
 
-<p><link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-0.1.0.css">
-<script type="text/javascript" src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/pdbe-molstar-plugin-0.1.0.js"></script></p>
+//comment out
+//<p><link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-0.1.0.css">
+//comment out
+//<script type="text/javascript" src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/pdbe-molstar-plugin-0.1.0.js"></script></p>
 
 <style>
   #myViewer{
@@ -91,15 +93,17 @@ if (!doNotTrack) {
   }
 </style>
 
-<h3>ランダムPDB構造おみくじ（2020/03/29:PDBe提供のdnsが非常に重い状況なので一旦公開停止）</h3>
+<h3>ランダムPDB構造おみくじ（2020/03/29:PDBe提供のcdnが非常に重い状況なので一旦公開停止）</h3>
 
 <!-- Molstar container -->
+//comment out
+//<p><center><div id="myViewer"></div></center></p>
 
-<p><center><div id="myViewer"></div></center></p>
-
+		
 <script>
   //Create plugin instance
-  var viewerInstance = new PDBeMolstarPlugin();
+  //comment out
+  //var viewerInstance = new PDBeMolstarPlugin();
   var l = 3;
   var c1 = "abcdefghijklmnopqrstuvwxyz0123456789";
   var c0 = "123456789";
@@ -116,7 +120,8 @@ if (!doNotTrack) {
             }
 
             //Get element from HTML/Template to place the viewer
-            var viewerContainer = document.getElementById('myViewer');
+	    //comment out
+           // var viewerContainer = document.getElementById('myViewer');
 
             //Call render method to display the 3D view
 	    //commented out 2020-03-29 because of
