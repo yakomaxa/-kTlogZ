@@ -80,76 +80,8 @@ if (!doNotTrack) {
 
 		<h2 id="molstarの勉強を兼ねたpdb構造おみくじ">molstarの勉強を兼ねたPDB構造おみくじ</h2>
 
-//comment out
-//<p><link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-0.1.0.css">
-//comment out
-//<script type="text/javascript" src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/pdbe-molstar-plugin-0.1.0.js"></script></p>
-
-<style>
-  #myViewer{
-  width:500px;
-  height: 500px;
-  position:relative;
-  }
-</style>
-
 <h3>ランダムPDB構造おみくじ（2020/03/29:PDBe提供のcdnが非常に重い状況なので一旦公開停止）</h3>
 
-<!-- Molstar container -->
-//comment out
-//<p><center><div id="myViewer"></div></center></p>
-
-		
-<script>
-  //Create plugin instance
-  //comment out
-  //var viewerInstance = new PDBeMolstarPlugin();
-  var l = 3;
-  var c1 = "abcdefghijklmnopqrstuvwxyz0123456789";
-  var c0 = "123456789";
-  var c0l = c0.length
-  var c1l = c1.length;
-  var rw = c0[Math.floor(Math.random()*c0l)];
-  for(var i=0; i<l; i++){
-            rw += c1[Math.floor(Math.random()*c1l)];
-            }
-            var molid = rw
-            //Set options (Checkout available options list in the documentation)
-            var options = {
-            moleculeId: molid, hideControls: 'true', expanded: 'true'
-            }
-
-            //Get element from HTML/Template to place the viewer
-	    //comment out
-           // var viewerContainer = document.getElementById('myViewer');
-
-            //Call render method to display the 3D view
-	    //commented out 2020-03-29 because of
-            //viewerInstance.render(viewerContainer, options);
-            </script>
-
-<h1 id="説明">説明</h1>
-
-<ul>
-<li>リロードするたびにランダムに構造を表示するだけ。</li>
-<li>ランダムな４文字を作り、PDB-IDだとみなして検索するだけなので「ハズレ」があります。</li>
-<li>気が向いたらもうちょっと上手くやるように直します。</li>
-</ul>
-		
-
-	</div>
-
-	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="true">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-	<div class="pagination">
-		<a href="/minus_kTlogP/post/waifu2x4pymoloutline_en/" class="left arrow">&#8592;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
-
-
-</main>
 
 
         <footer>
