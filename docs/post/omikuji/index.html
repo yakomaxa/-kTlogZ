@@ -1,95 +1,70 @@
+
 <!DOCTYPE html>
-<html lang="en-us">
-    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-               
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-135009439-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
- 
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
 
 
-		<meta property="og:title" content="PDB構造おみくじ" />
-		<meta property="og:type" content="article">
-		<meta property="og:description" content="" />
-		<meta property="og:url" content="http://yakomaxa.github.io/minus_kTlogP/post/omikuji/" />
-		<meta property="og:image" content="http://yakomaxa.github.io/minus_kTlogP//img/minus_kTlogP.png" />
-		<meta property="og:site_name" content="Sakuma -kTlogP">
+<meta name="author" content="Koya.S" />
 
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:url" content="http://yakomaxa.github.io/minus_kTlogP/post/omikuji/" />
-		<meta name="twitter:image" content="http://yakomaxa.github.io/minus_kTlogP//img/minus_kTlogP.png" />
-		<meta name="twitter:site" content="@skm58" />
-		<meta name="twitter:creator" content="@skm58" /> 
+<meta name="date" content="2020-01-03" />
+<head/>
 
-		<title>
-				PDB構造おみくじ &middot; Sakuma -kTlogP
-		</title>
-	
-		
-  		<link rel="stylesheet" href="/minus_kTlogP/css/style.css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
-	
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/minus_kTlogP/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/minus_kTlogP/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/minus_kTlogP/images/apple-touch-icon.png">
-	
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Sakuma -kTlogP" />
-		
-</head>
+<body>
 
-    <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/minus_kTlogP/">
-					<h2 class="nav-title">Sakuma -kTlogP</h2>
-				</a>
-				<ul>
-    <li><a href="/minus_kTlogP/about">About</a></li>
-    <li><a href="/minus_kTlogP/">Posts</a></li>
-</ul>
-			</div>
-		</nav>
+<!-- Molstar CSS & JS -->
+<link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-0.1.0.css">
+<script type="text/javascript" src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/pdbe-molstar-plugin-0.1.0.js"></script>
 
-        
-
-<main>
-	<div class="post">
-		<div class="post-info">
-    <span>Written by</span>
-        Koya.S
-        <br>
-        <span>on&nbsp;</span><time datetime="2020-01-08 03:52:28 &#43;0900 JST">January 8, 2020</time>
-</div>
-		<h1 class="post-title">PDB構造おみくじ</h1>
-<div class="post-line"></div>
-
-		
-
-		<h2 id="molstarの勉強を兼ねたpdb構造おみくじ">molstarの勉強を兼ねたPDB構造おみくじ</h2>
-
-<h3>ランダムPDB構造おみくじ（2020/03/29:PDBe提供のcdnが非常に重い状況なので一旦公開停止）</h3>
+<style>
+  #myViewer{
+  width:500px;
+  height: 500px;
+  position:relative;
+  }
+</style>
 
 
 
-        <footer>
-  
-			<span>
-			&copy; <time datetime="2020-01-08 04:26:25.29319 &#43;0900 JST m=&#43;0.073577686">2020</time> Koya Sakuma. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
-			</span>
-		</footer>
+<h3>ランダムPDB構造おみくじ</h3>
 
-    </body>
+<!-- Molstar container -->
+<center><div id="myViewer"></div></center>
+
+<script>
+  //Create plugin instance
+  var viewerInstance = new PDBeMolstarPlugin();
+  var l = 3;
+  var c1 = "abcdefghijklmnopqrstuvwxyz0123456789";
+  var c0 = "123456789";
+  var c0l = c0.length
+  var c1l = c1.length;
+  var rw = c0[Math.floor(Math.random()*c0l)];
+  for(var i=0; i<l; i++){
+		    rw += c1[Math.floor(Math.random()*c1l)];
+		    }
+		    var molid = rw
+		    //Set options (Checkout available options list in the documentation)
+		    var options = {
+		    moleculeId: molid, hideControls: 'true', expanded: 'true'
+		    }
+
+		    //Get element from HTML/Template to place the viewer
+		    var viewerContainer = document.getElementById('myViewer');
+
+		    //Call render method to display the 3D view
+		    viewerInstance.render(viewerContainer, options);
+		    </script>
+
+<br>リロードするたびにランダムに構造を表示するだけ。<br>
+ランダムな４文字をPDBにqueryしているだけなのでハズレがあります。
+<br>
+気が向いたらもうちょっと上手くやるように直します。
+
+</body>
 </html>
