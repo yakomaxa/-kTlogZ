@@ -1,0 +1,58 @@
+
+
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Koya.S" />
+
+<meta name="date" content="2020-01-03" />
+<head/>
+
+<body>
+<!-- For Light Theme include this css file instead of above -->
+<link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-0.1.0.css">
+
+<!--<link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-light-0.1.0.css">-->
+<script type="text/javascript" src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/pdbe-molstar-plugin-0.1.0.js"></script>
+
+<style>
+  #myViewer{
+  width:500px;
+  height: 500px;
+  position:relative;
+  }
+</style>
+
+
+
+<h3>1Q5I / using pdbe-molstar JS plugin</h3>
+
+<!-- Molstar container -->
+<center><div id="myViewer"></div></center>
+
+<script>
+  //Create plugin instance
+  var viewerInstance = new PDBeMolstarPlugin();
+  var options = {customData:{url: 'https://files.rcsb.org/view/6XEH.pdb', "format": 'pdb'},hideControls: 'true', expanded: 'true'}
+		    
+
+		    //Get element from HTML/Template to place the viewer
+		    var viewerContainer = document.getElementById('myViewer');
+
+		    //Call render method to display the 3D view
+		    viewerInstance.render(viewerContainer, options);
+</script>
+
+</body>
+</html>
